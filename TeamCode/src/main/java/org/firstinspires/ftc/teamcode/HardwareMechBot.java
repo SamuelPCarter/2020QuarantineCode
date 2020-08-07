@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * This is NOT an opmode.
@@ -17,6 +18,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  * Motor channel:  leftFrontMotor:        "leftFrontMotor"
  * Motor channel:  rightBackMotor:        "rightBackMotor"
  * Motor channel:  rightFrontMotor:       "rightFrontMotor"
+ * Servo channel:  gateServo:            "gateServo"
  */
 public class HardwareMechBot
 {
@@ -25,6 +27,7 @@ public class HardwareMechBot
     public DcMotor  leftFrontMotor  = null;
     public DcMotor  rightBackMotor     = null;
     public DcMotor  rightFrontMotor     = null;
+    public Servo gateServo = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -44,10 +47,13 @@ public class HardwareMechBot
         leftFrontMotor = hwMap.get(DcMotor.class, "leftFrontMotor");
         rightBackMotor    = hwMap.get(DcMotor.class, "rightBackMotor");
         rightFrontMotor    = hwMap.get(DcMotor.class, "rightFrontMotor");
+        gateServo = hwMap.get(Servo.class, "gateServo");
         leftBackMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
 
         // Set all motors to zero power
+        gateServo.setPosition(0);
+        gateServo.setDirection(Servo.Direction.FORWARD);
         leftBackMotor.setPower(0);
         leftFrontMotor.setPower(0);
         rightBackMotor.setPower(0);
